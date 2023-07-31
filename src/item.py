@@ -31,11 +31,11 @@ class Item:
         if len(user_input) < 10:
             self.name = user_input
         else:
-            self.name = user_input[0:9]
+            self.name = user_input[0:10]
 
     @classmethod
     def instantiate_from_csv(cls, path):
-        with open(path, "r", encoding='utf-8') as csvfile:
+        with open(path, "r", newline="", encoding='windows-1251') as csvfile:
             reader = csv.DictReader(csvfile)
             for i in reader:
                 name, price, quantity = i['name'], float(i['price']), int(i['quantity'])
