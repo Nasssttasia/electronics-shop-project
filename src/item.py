@@ -35,6 +35,7 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, path):
+        cls.all.clear()
         with open(path, "r", newline="", encoding='windows-1251') as csvfile:
             reader = csv.DictReader(csvfile)
             for i in reader:
