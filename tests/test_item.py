@@ -15,3 +15,6 @@ def test_initial_item(item3):
     assert item3.price == 10000
     assert item3.name == "Смартфон"
     assert item3.quantity == 20
+
+def test_string_to_number(item3):
+    assert Item.string_to_number('5') == 5

@@ -20,6 +20,13 @@ class Item:
         self.price = price
         self.quantity = quantity
         self.all.append(self)
+    """
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.__name}', '{self.price}', {self.quantity})"
+
+    def __str__(self):
+        return f'{self.__name}'
+    """
 
     @property
     def name(self):
@@ -27,11 +34,12 @@ class Item:
         return self.__name
 
     @name.setter
-    def name(self, user_input):
-        if len(user_input) < 10:
-            self.name = user_input
+    def name(self, name):
+        if len(name) < 10:
+            self.__name = name
         else:
-            self.name = user_input[0:10]
+            self.__name = name[0:10]
+
 
     @classmethod
     def instantiate_from_csv(cls, path):
