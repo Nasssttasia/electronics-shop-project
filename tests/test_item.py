@@ -18,3 +18,9 @@ def test_initial_item(item3):
 
 def test_string_to_number(item3):
     assert Item.string_to_number('5') == 5
+
+def test_repr(item3):
+    assert repr(item3) == "Item('Смартфон', 10000, 20)"
+
+def test_str(item3):
+    assert str(item3) == 'Смартфон'
