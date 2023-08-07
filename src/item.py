@@ -1,5 +1,7 @@
 import csv
 
+from src.phone import Phone
+
 
 class Item:
     """
@@ -26,6 +28,10 @@ class Item:
 
     def __str__(self):
         return self.__name
+
+    def __add__(self, other):
+        if isinstance(other, Phone):
+            return self.quantity + other.number_of_sim
 
     @property
     def name(self):
