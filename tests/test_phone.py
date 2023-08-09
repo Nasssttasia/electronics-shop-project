@@ -1,6 +1,4 @@
-from src.phone import Phone
 
-phone3 = Phone("iPhone 14", 120_000, 5, 2)
 
 def test_initial_phone(phone3):
     assert phone3.price == 120_000

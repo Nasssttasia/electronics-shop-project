@@ -1,6 +1,4 @@
-from src.keyboard import Keyboard
 
-keyboard3 = Keyboard("iPhone 14", 120_000, 5)
 
 def test_initial_keyboard(keyboard3):
     assert keyboard3.price == 120_000
