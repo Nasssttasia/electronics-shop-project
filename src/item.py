@@ -1,6 +1,6 @@
 import csv
+from exceptions import InstantiateCSVError
 
-from src.error import InstantiateCSVError
 
 
 class Item:
@@ -46,24 +46,42 @@ class Item:
         else:
             self.__name = name[0:10]
 
+    @staticmethod
+    def read_csv_file(path):
+        items = []
+        with open(path, encoding='windows-1251') as f:
+            files = csv.DictReader(f)
+            for file in files:
+                if len(file) < 3:
+                    raise InstantiateCSVError
+                items.append(file)
+        return items
 
     @classmethod
-    def instantiate_from_csv(cls, path):
+    def instantiate_from_csv(cls, path='../src/items.csv'):
         try:
-            cls.all.clear()
-            with open(path, "r", newline="", encoding='windows-1251') as csvfile:
-                reader = csv.DictReader(csvfile)
-                for i in reader:
-                    name, price, quantity = i['name'], float(i['price']), int(i['quantity'])
-                    cls(name, price, quantity)
+            cls.all = []
+            data = cls.read_csv_file(path)
+            for line in data:
+                cls(line['name'],
+                    cls.string_to_number(line['price']),
+                    cls.string_to_number(line['quantity']))
         except FileNotFoundError:
             print("FileNotFoundError: Отсутствует файл item.csv")
+            return "FileNotFoundError: Отсутствует файл item.csv"
+        except InstantiateCSVError:
+            print("Файл item.csv поврежден")
+            return "Файл item.csv поврежден"
 
 
 
     @staticmethod
-    def string_to_number(str_):
-        return int(float(str_))
+    def string_to_number(string):
+        return int(float(string))
+        # if '.' in string:
+        #     return float(string)
+        # else:
+        #     return int(string)
 
     def calculate_total_price(self) -> float:
         """

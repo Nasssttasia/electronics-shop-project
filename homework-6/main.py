@@ -1,11 +1,11 @@
 from src.item import Item
-from path import ITEMS_PATH, ITEM_PATH
+from path import ITEM_PATH
 
 if __name__ == '__main__':
     # Файл items.csv отсутствует.
-    Item.instantiate_from_csv(ITEM_PATH)
+    Item.instantiate_from_csv()
     # FileNotFoundError: Отсутствует файл item.csv
 
     # В файле items.csv удалена последняя колонка.
-    Item.instantiate_from_csv(ITEMS_PATH)
+    Item.instantiate_from_csv()
     # InstantiateCSVError: Файл item.csv поврежден
