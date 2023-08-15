@@ -1,3 +1,6 @@
+import pytest
+
+from exceptions import InstantiateCSVError
 from src.item import Item
 from src.phone import Phone
 
@@ -17,15 +20,32 @@ def test_initial_item(item3):
     assert item3.name == "Смартфон"
     assert item3.quantity == 20
 
+
 def test_string_to_number(item3):
     assert Item.string_to_number('5') == 5
+
 
 def test_repr(item3):
     assert repr(item3) == "Item('Смартфон', 10000, 20)"
 
+
 def test_str(item3):
     assert str(item3) == 'Смартфон'
+
 
 def test_add(item3):
     phone3 = Phone("iPhone 14", 120_000, 5, 2)
     assert item3.quantity + phone3.quantity == 25
+
+'''def test_divide_by_zero():
+    with pytest.raises(ZeroDivisionError):
+        divide_numbers(1, 0)'''
+
+def test_file_not_found(item3):
+    with pytest.raises(FileNotFoundError):
+        item3.instantiate_from_csv(path='../src/item.csv')
+
+
+def test_instantiate_csv_error(item3):
+    with pytest.raises(InstantiateCSVError):
+        item3.instantiate_from_csv(path='../src/items.csv')
