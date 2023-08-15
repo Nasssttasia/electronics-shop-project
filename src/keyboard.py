@@ -1,7 +1,7 @@
 from src.item import Item
 
 
-class MixinLang():
+class MixinLang:
     
     def __init__(self):
         self.__language = 'EN'

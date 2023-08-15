@@ -2,7 +2,6 @@ import csv
 from exceptions import InstantiateCSVError
 
 
-
 class Item:
     """
     Класс для представления товара в магазине.
@@ -69,19 +68,17 @@ class Item:
         except FileNotFoundError:
             print("FileNotFoundError: Отсутствует файл item.csv")
             return "FileNotFoundError: Отсутствует файл item.csv"
+
         except InstantiateCSVError:
             print("Файл item.csv поврежден")
             return "Файл item.csv поврежден"
 
-
-
     @staticmethod
     def string_to_number(string):
-        return int(float(string))
-        # if '.' in string:
-        #     return float(string)
-        # else:
-        #     return int(string)
+        if string.isalpha():
+            return int(float(string))
+        else:
+            raise InstantiateCSVError
 
     def calculate_total_price(self) -> float:
         """
